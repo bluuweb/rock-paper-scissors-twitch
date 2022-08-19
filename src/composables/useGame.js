@@ -36,6 +36,12 @@ export const useGame = () => {
         result.value = res;
     };
 
+    const resetGame = () => {
+        userOption.value = "";
+        BotOption.value = "";
+        result.value = "";
+    };
+
     return {
         userOption,
         BotOption,
@@ -44,5 +50,6 @@ export const useGame = () => {
         totallost,
         totaldraw,
         startGame,
+        resetGame,
     };
 };
