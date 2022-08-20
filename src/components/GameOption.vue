@@ -6,7 +6,9 @@ const { startGame } = useGame();
 </script>
 
 <template>
-    <section class="grid grid-cols-2 justify-items-center max-w-lg mx-auto">
+    <section
+        class="grid grid-cols-2 justify-items-center max-w-lg mx-auto bg-[url('@/assets/bg-triangle.svg')] bg-no-repeat bg-center bg-[length:200px]"
+    >
         <ButtonGameOption text="rock" @click="startGame('rock')" />
         <ButtonGameOption text="paper" @click="startGame('paper')" />
         <div class="col-span-2">

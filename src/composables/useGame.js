@@ -1,8 +1,10 @@
 import { ref } from "vue";
 import { getRandomIntInclusive } from "@/helpers/randomjs.js";
+import JSConfetti from "js-confetti";
+const jsConfetti = new JSConfetti();
 
 const userOption = ref("");
-const BotOption = ref("");
+const botOption = ref("");
 const result = ref("");
 const totalwins = ref(0);
 const totallost = ref(0);
@@ -19,12 +21,13 @@ export const useGame = () => {
 
     const startGame = (opcion) => {
         userOption.value = opcion;
-        BotOption.value = options[getRandomIntInclusive(0, 2)];
+        botOption.value = options[getRandomIntInclusive(0, 2)];
 
-        const res = caseopcion[opcion][BotOption.value];
+        const res = caseopcion[opcion][botOption.value];
         switch (res) {
             case "win":
                 totalwins.value++;
+                jsConfetti.addConfetti();
                 break;
             case "draw":
                 totaldraw.value++;
@@ -36,13 +39,20 @@ export const useGame = () => {
         result.value = res;
     };
 
+    const resetGame = () => {
+        userOption.value = "";
+        botOption.value = "";
+        result.value = "";
+    };
+
     return {
         userOption,
-        BotOption,
+        botOption,
         result,
         totalwins,
         totallost,
         totaldraw,
         startGame,
+        resetGame,
     };
 };
